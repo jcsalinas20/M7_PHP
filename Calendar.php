@@ -9,6 +9,9 @@
         .hidden {
             visibility: hidden;
         }
+        .disable {
+            opacity: 0.3;
+        }
         h1 {
             text-align: center;
         }
@@ -51,8 +54,9 @@
     <h1><?php echo date("F") . " - " . date("Y")  ?></h1>
     <table>
         <?php
+            $diasSiguienteMes = 1;
 
-            $month = date("m"); $year = date("Y"); // mes y año actual
+            $month = date("m")-1; $year = date("Y"); // mes y año actual
 
             $numDay = strftime("%w", mktime(0,0,0,$month, 1, $year));
             $namesDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; // Nombres de los dias
@@ -77,7 +81,10 @@
                     }
                 } else {
                     for ($j = 0; $j < 7; $j++) { // mostrar los dias de la semana
-                        if ($contador > $numDias) echo "<th class='num hidden'>0</th>";
+                        if ($contador > $numDias) { 
+                            echo "<th class='num disable'>$diasSiguienteMes</th>";
+                            $diasSiguienteMes++;
+                        }
                         else echo "<th class='num'>$contador</th>";
                         $contador++;
                     }
@@ -94,7 +101,7 @@
                 } else {
                     $contador = $contador - 7; // restar 7 al contador para agregar el input al día
                     for ($j = 0; $j < 7; $j++) { // mostrar los dias de la semana
-                        if ($contador > $numDias) echo "<td class='value hidden'><input type='text' placeholder='Enter text...' /></td>";
+                        if ($contador > $numDias) echo "<td class='value disable'><input disabled type='text' /></td>";
                         else echo "<td class='value'><input type='text' placeholder='Enter text...' /></td>";
                         $contador++;
                     }
