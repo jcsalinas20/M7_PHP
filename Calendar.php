@@ -54,11 +54,12 @@
     <h1><?php echo date("F") . " - " . date("Y")  ?></h1>
     <table>
         <?php
-            $diasSiguienteMes = 1;
+            $month = date("m"); $year = date("Y"); // mes y año actual
+            $numSemana = strftime("%w", mktime(0,0,0,$month, 1, $year));
 
-            $month = date("m")-1; $year = date("Y"); // mes y año actual
+            $diasSiguienteMes = 1; // contador para mostrar los dias del siguinete mes
+            $diasAnteriorMes = cal_days_in_month(CAL_GREGORIAN, $month - 1, $year) - ($numSemana - 1); // Número de dias del mes
 
-            $numDay = strftime("%w", mktime(0,0,0,$month, 1, $year));
             $namesDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; // Nombres de los dias
 
             echo "<tr>";
@@ -67,15 +68,18 @@
 
             $numDias = cal_days_in_month(CAL_GREGORIAN, $month, $year); // Número de dias del mes
             $contador = 1; // contador para saber el número de dia que introducir
-            $semanas = ceil(($numDias + $numDay) / 7); // sacar el número de semanas que tiene el mes
+            $semanas = ceil(($numDias + $numSemana) / 7); // sacar el número de semanas que tiene el mes
             for ($i = 1; $i <= $semanas; $i++) {
                 echo "<tr>";
 
                 // NÚMERO DE DÍA
                 echo "<tr class='day'>";
                 if ($i == 1) {
-                    for ($j = 0; $j < $numDay; $j++) echo "<th class='num hidden'>0</th>"; // ocultar los dias del mes pasado
-                    for ($j = $numDay; $j < 7; $j++) { // mostrar los dias del resto de la semana
+                    for ($j = 0; $j < $numSemana; $j++) {
+                        echo "<th class='num disable'>$diasAnteriorMes</th>"; // ocultar los dias del mes pasado
+                        $diasAnteriorMes++;
+                    }
+                    for ($j = $numSemana; $j < 7; $j++) { // mostrar los dias del resto de la semana
                         echo "<th class='num'>$contador</th>";
                         $contador++;
                     }
@@ -94,14 +98,14 @@
                 // INPUT TEXT BOX
                 echo "<tr>";
                 if ($i == 1) {
-                    for ($j = 0; $j < $numDay; $j++) // ocultar los dias del mes pasado
-                        echo "<td class='value hidden'><input type='text' placeholder='Enter text...' /></td>";
-                    for ($j = $numDay; $j < 7; $j++) // mostrar los dias del resto de la semana
+                    for ($j = 0; $j < $numSemana; $j++) // ocultar los dias del mes pasado
+                        echo "<td class='value disable'><input disabled type='text' /></td>";
+                    for ($j = $numSemana; $j < 7; $j++) // mostrar los dias del resto de la semana
                         echo "<td class='value'><input type='text' placeholder='Enter text...' /></td>";
                 } else {
                     $contador = $contador - 7; // restar 7 al contador para agregar el input al día
                     for ($j = 0; $j < 7; $j++) { // mostrar los dias de la semana
-                        if ($contador > $numDias) echo "<td class='value disable'><input disabled type='text' /></td>";
+                        if ($contador > $numDias) echo "<td class='value disable'><input disabled type='text' /></td>"; // dias del siguiente mes
                         else echo "<td class='value'><input type='text' placeholder='Enter text...' /></td>";
                         $contador++;
                     }
