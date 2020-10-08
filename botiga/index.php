@@ -21,25 +21,25 @@
         tbody {
             width: 100%;
         }
-        td, th {
-            border: 1px solid red;
-        }
         tr {
             width: 100%;
             display: flex;
+            background-color: #6f6f6f;
+            border: 1px solid red;
         }
         th {
             background-color: #212121;
             color: white;
             font-family: sans-serif;
             font-size: 25px;
-            width: 33.3%;
+            width: 30%;
         }
         td {
-            width: 33.3%;
+            width: 30%;
             background-color: #6f6f6f;
             color: white;
             text-align: center;
+            align-self: center;
             padding: 5px;
             font-size: 16px;
             font-family: sans-serif;
@@ -55,27 +55,36 @@
             border: 2px solid red;
             padding: 2px 15px;
         }
+        img.trash {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>List of Products</h1>
     <table>
         <tr>
+            <th style="width: 10%;">ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Price</th>
+            <th style="width: 20%;">Price</th>
+            <th style="width: 10%;">Trash</th>
         </tr>
         <?php
+            $contador = 1;
             $myfile = fopen("products.txt", "r") or die("Unable to open file!");
             while(!feof($myfile)) {
                 $line = fgets($myfile);
                 if ($line != "") {
                     list($name, $description, $price) = explode(",", $line);
                     echo "<tr>";
+                    echo "<td style='width: 10%;'>$contador</td>";
                     echo "<td>$name</td>";
                     echo "<td>$description</td>";
-                    echo "<td>$price</td>";
+                    echo "<td style='width: 20%;'>$price</td>";
+                    echo "<td style='width: 10%;'><a href='deleteProduct.php?line=$contador'><img src='./trash_icon.png' width='30' /></a></td>";
                     echo "</tr>";
+                    $contador++;
                 }
             }
             fclose($myfile);
