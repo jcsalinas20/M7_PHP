@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $NAME ?></title>
     <style>
-        .hidden {
-            visibility: hidden;
-        }
         .disable {
             opacity: 0.3;
         }
@@ -18,7 +15,8 @@
         table {
             display: flex;
             flex-flow: column;
-            width: 100%;
+            width: 100%;    
+            box-shadow: 0 0 10px black;
         }
         tr {
             display: flex;
