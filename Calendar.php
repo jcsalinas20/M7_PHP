@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include("../variables.php") ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $NAME ?></title>
+    <title>Calendar</title>
     <style>
         .disable {
             opacity: 0.3;
