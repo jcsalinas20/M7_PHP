@@ -44,10 +44,21 @@
             font-size: 16px;
             font-family: sans-serif;
         }
-        input[type='button'] {
+        input[type='button']#new-product {
             position: absolute;
             top: 0;
             right: 0;
+            background-color: black;
+            color: white;
+            font-size: 22px;
+            font-family: sans-serif;
+            border: 2px solid red;
+            padding: 2px 15px;
+        }
+        input[type='button']#cart {
+            position: absolute;
+            top: 0;
+            left: 0;
             background-color: black;
             color: white;
             font-size: 22px;
@@ -67,7 +78,8 @@
             <th style="width: 10%;">ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th style="width: 20%;">Price</th>
+            <th style="width: 15%;">Price</th>
+            <th style="width: 15%;">Shopping Cart</th>
             <th style="width: 10%;">Trash</th>
         </tr>
         <?php
@@ -81,7 +93,8 @@
                     echo "<td style='width: 10%;'>$contador</td>";
                     echo "<td>$name</td>";
                     echo "<td>$description</td>";
-                    echo "<td style='width: 20%;'>$price</td>";
+                    echo "<td style='width: 15%;'>$price</td>";
+                    echo "<td style='width: 15%;'><a href='compra.php?prod=$name'><img src='./shoppingCart.png' width='30' /></a></td>";
                     echo "<td style='width: 10%;'><a href='deleteProduct.php?line=$contador'><img src='./trash_icon.png' width='30' /></a></td>";
                     echo "</tr>";
                     $contador++;
@@ -90,6 +103,7 @@
             fclose($myfile);
         ?>
     </table>
-    <input type="button" value="Add new products" onclick="window.location.href = 'addProducts.php'">
+    <input id="cart" type="button" value="Shopping Cart" onclick="window.location.href = 'addToShoppingCart.php'">
+    <input id="new-product" type="button" value="Add new products" onclick="window.location.href = 'addProducts.php'">
 </body>
 </html>

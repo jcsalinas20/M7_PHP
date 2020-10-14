@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new Products</title>
+    <title>Add Product To Shopping Cart</title>
     <style>
         html, body {
             height: 80%;
@@ -25,7 +25,7 @@
         label {
             font-size: 20px;
         }
-        input[type='text'] {
+        input[type='number'], select {
             padding: 2px 7px;
             margin-top: 1px;
             margin-bottom: 10px;
@@ -40,16 +40,26 @@
             border-radius: 25px;
         }
     </style>
+    <?php $myfile = fopen("products.txt", "r") or die("Unable to open file!"); ?>
 </head>
 <body>
-    <form action="./submitProducts.php" method="post">
-        <label for="lname">Name:</label>
-        <input type="text" name="name" id="name" placeholder="Name..." required>
-        <label for="lname">Description:</label>
-        <input type="text" name="description" id="description" placeholder="Description..." required>
-        <label for="lname">Price:</label>
-        <input type="text" name="price" id="price" placeholder="Price..." required>
-        <input type="submit" value="Add Product">
+    <form action="./addToShoppingCart.php" method="post">
+        <label for="lname">Product:</label>
+        <select name="prod" id="prod">
+            <?php
+            while(!feof($myfile)) {
+                $line = fgets($myfile);
+                if ($line != "") {
+                    list($name) = explode(",", $line);
+                    if ($name == $_GET['prod']) echo "<option selected value='$name'>$name</option>";
+                    else echo "<option value='$name'>$name</option>";
+                }
+            }
+            ?>
+        </select>
+        <label for="lname">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" placeholder="quantity" required>
+        <input type="submit" value="Add To Cart">
     </form>
 </body>
 </html>
