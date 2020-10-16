@@ -20,12 +20,8 @@ if ($_POST['name'] != '') {
             ]
         ];
     }
-
-
-
-    print_r($_SESSION['products']);
 }
 
-//header("location:../", true)
+header("location:../", true)
 
 ?>
