@@ -16,7 +16,8 @@ if ($_POST['name'] != '') {
             $name => [
                 "name" => $name,
                 "description" => $description,
-                "price" => $price
+                "price" => $price,
+                "quantity" => 0
             ]
         ];
     }

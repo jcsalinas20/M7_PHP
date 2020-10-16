@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <?php $myFile = fopen("cart.txt", "r") or die("Unable to open file!"); ?>
+    <?php require("../login/session-start.php") ?>
     <style>
         body {
             display: flex;
@@ -31,18 +31,15 @@
 </head>
 <body>
     <?php
-        while(!feof($myFile)) {
-            $line = fgets($myFile);
-            if ($line != "") {
-                list($name, $quantity) = explode(",", $line);
-                echo (
-                    "<div class='product-card'>
-                        <p class='name'>Product: <b>$name</b></p>
-                        <p class='quantity'>Quantity: <b>$quantity</b></p>
-                    </div>"
-                );
-            }
-        }
+    foreach ($_SESSION['products'] as $product) {
+        $name = $product['name']; $desc = $product['description']; $price = $product['price']; $quantity = $product['quantity'];
+        echo (
+            "<div class='product-card'>
+                <p class='name'>Product: <b>$name</b></p>
+                <p class='quantity'>Quantity: <b>$quantity</b></p>
+            </div>"
+        );
+    }
     ?>
 </body>
 </html>
