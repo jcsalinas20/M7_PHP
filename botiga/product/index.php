@@ -42,7 +42,7 @@
     </style>
 </head>
 <body>
-    <form action="./submitProducts.php" method="post">
+    <form action="./submit.php" method="post">
         <label for="lname">Name:</label>
         <input type="text" name="name" id="name" placeholder="Name..." required>
         <label for="lname">Description:</label>

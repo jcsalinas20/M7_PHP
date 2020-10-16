@@ -8,6 +8,6 @@ if (isset($_GET['line'])) {
     file_put_contents("products.txt", $file_out);
 }
 
-header("location: ./", true);
+header("location: ../", true);
 
 ?>

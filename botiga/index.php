@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botiga</title>
+    <?php require("login/session-start.php") ?>
     <style>
         body {
             background-color: #d1d1d1;
@@ -94,8 +95,8 @@
                     echo "<td>$name</td>";
                     echo "<td>$description</td>";
                     echo "<td style='width: 15%;'>$price</td>";
-                    echo "<td style='width: 15%;'><a href='compra.php?prod=$name'><img src='./shoppingCart.png' width='30' /></a></td>";
-                    echo "<td style='width: 10%;'><a href='deleteProduct.php?line=$contador'><img src='./trash_icon.png' width='30' /></a></td>";
+                    echo "<td style='width: 15%;'><a href='compra.php?prod=$name'><img src='./img/shoppingCart.png' width='30' /></a></td>";
+                    echo "<td style='width: 10%;'><a href='product/delete.php?line=$contador'><img src='./img/trash_icon.png' width='30' /></a></td>";
                     echo "</tr>";
                     $contador++;
                 }
@@ -103,7 +104,7 @@
             fclose($myfile);
         ?>
     </table>
-    <input id="cart" type="button" value="Shopping Cart" onclick="window.location.href = 'addToShoppingCart.php'">
-    <input id="new-product" type="button" value="Add new products" onclick="window.location.href = 'addProducts.php'">
+    <input id="cart" type="button" value="Shopping Cart" onclick="window.location.href = 'carrito.php'">
+    <input id="new-product" type="button" value="Add new products" onclick="window.location.href = 'product/'">
 </body>
 </html>
