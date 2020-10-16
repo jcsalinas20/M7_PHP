@@ -93,7 +93,7 @@
                 echo "<td>$desc</td>";
                 echo "<td style='width: 15%;'>$price</td>";
                 echo "<td style='width: 15%;'><a href='cart/select-quantity.php?prod=$name'><img src='./img/shopping_cart.png' width='30' /></a></td>";
-                echo "<td style='width: 10%;'><a href='product/delete.php?line=$contador'><img src='./img/trash_icon.png' width='30' /></a></td>";
+                echo "<td style='width: 10%;'><a href='product/delete.php?prod=$name'><img src='./img/trash_icon.png' width='30' /></a></td>";
                 echo "</tr>";
                 $contador++;
             }

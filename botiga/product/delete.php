@@ -1,11 +1,10 @@
 <?php
 
-if (isset($_GET['line'])) {
-    $line = $_GET['line'] - 1;
+if (isset($_GET['prod'])) {
+    require("../login/session-start.php");
 
-    $file_out = file("products.txt");
-    unset($file_out[$line]);
-    file_put_contents("products.txt", $file_out);
+    $name = $_GET['prod'];
+    unset($_SESSION['products'][$name]);
 }
 
 header("location: ../", true);
