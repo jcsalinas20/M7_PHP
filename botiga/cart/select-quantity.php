@@ -40,20 +40,17 @@
             border-radius: 25px;
         }
     </style>
-    <?php $myfile = fopen("products.txt", "r") or die("Unable to open file!"); ?>
+    <?php require("../login/session-start.php") ?>
 </head>
 <body>
-    <form action="./addToShoppingCart.php" method="post">
+    <form action="./submit-quantity.php" method="post">
         <label for="lname">Product:</label>
         <select name="prod" id="prod">
             <?php
-            while(!feof($myfile)) {
-                $line = fgets($myfile);
-                if ($line != "") {
-                    list($name) = explode(",", $line);
-                    if ($name == $_GET['prod']) echo "<option selected value='$name'>$name</option>";
-                    else echo "<option value='$name'>$name</option>";
-                }
+            foreach ($_SESSION['products'] as $product) {
+                $name = $product['name'];
+                if ($name == $_GET['prod']) echo "<option selected value='$name'>$name</option>";
+                else echo "<option value='$name'>$name</option>";
             }
             ?>
         </select>
