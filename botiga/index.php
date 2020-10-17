@@ -19,6 +19,7 @@
             <th style="width: 10%;">Trash</th>
         </tr>
         <?php
+        if (isset($_SESSION['products'])) {
             $contador = 1;
             foreach ($_SESSION['products'] as $product) {
                 $name = $product['name']; $desc = $product['description']; $price = $product['price'];
@@ -33,6 +34,7 @@
                 echo "</tr>";
                 $contador++;
             }
+        }
         ?>
     </table>
     <input id="cart" type="button" value="Shopping Cart" onclick="window.location.href = 'cart/'">
