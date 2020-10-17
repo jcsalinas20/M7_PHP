@@ -71,3 +71,12 @@ input[type="button"]#cart {
 img.trash {
   cursor: pointer;
 }
+
+#last {
+  font-weight: bold;
+  text-shadow: 0 0 5px black;
+}
+
+#last td {
+  color: #bf0; 
+}

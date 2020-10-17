@@ -22,7 +22,8 @@
             $contador = 1;
             foreach ($_SESSION['products'] as $product) {
                 $name = $product['name']; $desc = $product['description']; $price = $product['price'];
-                echo "<tr>";
+                if ($contador == sizeof($_SESSION['products'])) echo "<tr id='last'>";
+                else echo "<tr>";
                 echo "<td style='width: 10%;'>$contador</td>";
                 echo "<td>$name</td>";
                 echo "<td>$desc</td>";
