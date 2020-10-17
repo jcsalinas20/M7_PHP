@@ -50,3 +50,10 @@ select {
   margin-bottom: 10px;
   font-size: 19px;
 }
+
+img.home {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 64px;
+}

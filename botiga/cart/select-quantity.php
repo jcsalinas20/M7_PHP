@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/product.css">
 </head>
 <body>
+    <a href="../"><img class="home" src="../img/home_icon.png" alt="home"></a>
     <form action="./submit-quantity.php" method="post">
         <label for="lname">Product:</label>
         <select name="prod" id="prod">
