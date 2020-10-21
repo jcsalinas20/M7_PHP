@@ -19,22 +19,25 @@
             <th style="width: 10%;">Trash</th>
         </tr>
         <?php
-        if (isset($_SESSION['products'])) {
-            $contador = 1;
-            foreach ($_SESSION['products'] as $product) {
-                $name = $product['name']; $desc = $product['description']; $price = $product['price'];
-                if ($contador == sizeof($_SESSION['products'])) echo "<tr id='last'>";
-                else echo "<tr>";
+        $contador = 1;
+
+        $myfile = fopen("txt/products.txt", "r") or die("Unable to open file!");
+        while(!feof($myfile)) {
+            $line = fgets($myfile);
+            if ($line != "") {
+                list($name, $desc, $price) = explode(",", $line);
+                echo "<tr>";
                 echo "<td style='width: 10%;'>$contador</td>";
                 echo "<td>$name</td>";
                 echo "<td>$desc</td>";
                 echo "<td style='width: 15%;'>$price</td>";
                 echo "<td style='width: 15%;'><a href='cart/select-quantity.php?prod=$name'><img src='./img/shopping_cart.png' width='30' /></a></td>";
-                echo "<td style='width: 10%;'><a href='product/delete.php?prod=$name'><img src='./img/trash_icon.png' width='30' /></a></td>";
+                echo "<td style='width: 10%;'><a href='product/delete.php?prod=$name&line=$contador'><img src='./img/trash_icon.png' width='30' /></a></td>";
                 echo "</tr>";
                 $contador++;
             }
         }
+        fclose($myfile);
         ?>
     </table>
     <input id="cart" type="button" value="Shopping Cart" onclick="window.location.href = 'cart/'">

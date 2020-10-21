@@ -13,10 +13,14 @@
         <label for="lname">Product:</label>
         <select name="prod" id="prod">
             <?php
-            foreach ($_SESSION['products'] as $product) {
-                $name = $product['name'];
-                if ($name == $_GET['prod']) echo "<option selected value='$name'>$name</option>";
-                else echo "<option value='$name'>$name</option>";
+            $myfile = fopen("../txt/products.txt", "r") or die("Unable to open file!");
+            while(!feof($myfile)) {
+                $line = fgets($myfile);
+                if ($line != "") {
+                    list($name) = explode(",", $line);
+                    if ($name == $_GET['prod']) echo "<option selected value='$name'>$name</option>";
+                    else echo "<option value='$name'>$name</option>";
+                }
             }
             ?>
         </select>

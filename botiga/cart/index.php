@@ -22,7 +22,7 @@
                 if (strlen($desc) > 200) {
                     $splitDesc = str_split($desc, 200)[0] . "...";
                 }
-                $total = $quantity * $price;
+                $total = $quantity * intval($price);
                 $totalPriceCart += $total;
                 if ($quantity > 0)
                     echo ("<div class='product-card'>

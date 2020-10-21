@@ -2,6 +2,12 @@
 
 if ($_POST['name'] != '') {
     require("../login/session-start.php");
+
+    /*** AGREGAR PRODUCTO EN EL .txt */
+    $data =  $_POST['name'] . "," .$_POST['description'] . "," . $_POST['price'];
+    $myfile = file_put_contents('../txt/products.txt', $data.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+    /*** PRODUCTO AGREGADO A LA SESSION ***/
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
